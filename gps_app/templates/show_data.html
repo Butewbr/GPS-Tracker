@@ -4,7 +4,7 @@
     <title>GPS Data</title>
 </head>
 <body>
-    <h1>GPS Data</h1>
+    <h1>device_name</h1>
     <table>
         <thead>
             <tr>
@@ -14,7 +14,7 @@
             </tr>
         </thead>
         <tbody>
-            {% for data in gps_data %}
+            {% for data in gps_devices %}
             <tr>
                 <td>{{ data.latitude }}</td>
                 <td>{{ data.longitude }}</td>
