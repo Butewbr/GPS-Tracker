@@ -22,5 +22,5 @@ urlpatterns = [
     path('login/', include('gps_app.urls')),
     path('profile/', include('gps_app.urls')),
     path('register/', include('gps_app.urls')),
-    path('table/', include('gps_app.urls'))
+    path('table/', include('gps_app.urls')),
 ]

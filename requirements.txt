@@ -1,0 +1,2 @@
+djangorestframework==3.14.0
+django-google-maps==0.13.0
