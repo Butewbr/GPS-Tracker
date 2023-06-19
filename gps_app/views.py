@@ -30,21 +30,27 @@ def gps_coordinates(request):
     name = 'BernardoLegal'
     latitude = request.data.get('latitude')
     longitude = request.data.get("longitude")
+    altitude = request.data.get('altitude')
+    speed = request.data.get('speed')
+
+    # margem de erro do gps
+    if speed < 2:
+        speed = 0
 
     print(latitude)
     print(longitude)
 
-    gps_data = GPSDevice(current_latitude=latitude, current_longitude=longitude)
-    gps_data.save()
-
     try:
         gps_data = GPSDevice.objects.get(name=name)
-        gps_data.latitude = latitude
-        gps_data.longitude = longitude
-        gps_data.save()
-    except GPSDevice.DoesNotExist:
-        gps_data = GPSDevice(name=name, current_latitude=latitude, current_longitude=longitude)
-        gps_data.save()
+        gps_data.current_latitude = latitude
+        gps_data.current_longitude = longitude
+        gps_data.current_altitude = altitude
+        gps_data.current_speed = speed
+    except:
+        gps_data = GPSDevice(name=name, current_latitude=latitude, current_longitude=longitude, current_altitude=altitude, current_speed=speed)
+
+    
+    gps_data.save()
 
     return Response({'message': 'GPS coordinates saved'})
 

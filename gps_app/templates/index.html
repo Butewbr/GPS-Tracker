@@ -264,12 +264,11 @@
                 </div>
                 <div class="card-body">
                   <div class="chart-area">
-                      <iframe class="gps-map" src="https://maps.google.com/maps?q={{ gps_data.latitude }},{{ gps_data.longitude }}&amp;z=15&amp;output=embed" ></iframe>
+                      <iframe class="gps-map" src="https://maps.google.com/maps?q={{ gps_data.current_latitude }},{{ gps_data.current_longitude }}&amp;z=15&amp;output=embed" ></iframe>
                   </div>
-                  <div class="text-center small mt-4"><span class="me-2"><i
-                        class="fas fa-circle text-primary"></i>&nbsp;Direct</span><span class="me-2"><i
-                        class="fas fa-circle text-success"></i>&nbsp;Social</span><span class="me-2"><i
-                        class="fas fa-circle text-info"></i>&nbsp;Refferal</span>
+                  <div class="text-center small mt-4"><span class="me-2">
+                      <div class="alt">Altitude: {{gps_data.current_altitude}} m</div>
+                      <div class="alt">Speed: {{gps_data.current_speed}} km/h</div>
                   </div>
                 </div>
               </div>
