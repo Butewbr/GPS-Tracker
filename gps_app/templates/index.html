@@ -263,9 +263,10 @@
                 </div>
                 <div class="card-body">
                   <div class="chart-area">
-                      <iframe class="gps-map" src="https://maps.google.com/maps?q={{ gps_data.current_latitude }},{{ gps_data.current_longitude }}&amp;z=15&amp;output=embed" ></iframe>
+                      <iframe id="real-time-gps" class="gps-map" src="https://maps.google.com/maps?q={{ gps_data.current_latitude }},{{ gps_data.current_longitude }}&amp;z=15&amp;output=embed" ></iframe>
                   </div>
                   <div class="text-center small mt-4"><span class="me-2">
+                      <div class="alt">GPS number: {{gps_data.id}}</div>
                       <div class="alt">Altitude: {{gps_data.current_altitude}} m</div>
                       <div class="alt">Speed: {{gps_data.current_speed}} km/h</div>
                   </div>
@@ -414,6 +415,17 @@
   <script src="{% static '/assets/js/chart.min.js' %}"></script>
   <script src="{% static '/assets/js/bs-init.js' %}"></script>
   <script src="{% static '/assets/js/theme.js' %}"></script>
+  <script src="{% static '/assets/js/main.js' %}"></script>
+
+  <script>
+    var src = "https://maps.google.com/maps?q={{ gps_data.current_latitude }},{{ gps_data.current_longitude }}&amp;z=15&amp;output=embed"
+    setInterval(function () {
+         $('#real-time-gps').remove();
+         var iframe_html = '<iframe id="real-time-gps" class="gps-map" src="'+ src +'"></iframe>';
+         $('#iframe').html(iframe_html);
+     }, 1000);
+ </script>
+ 
 
 </body>
 

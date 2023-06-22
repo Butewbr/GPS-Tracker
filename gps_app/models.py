@@ -12,12 +12,15 @@ class GPSDevice(models.Model):
     current_longitude = models.DecimalField(max_digits=9, decimal_places=6)
     current_altitude = models.DecimalField(max_digits=9, decimal_places=3)
     current_speed = models.DecimalField(max_digits=9, decimal_places=3)
+    last_updated = models.DateTimeField(default=datetime.now)
     # user_id = models.ForeignKey(User, on_delete=models.CASCADE)
 
 class PastLocation(models.Model):
     latitude = models.DecimalField(max_digits=9, decimal_places=6)
     longitude = models.DecimalField(max_digits=9, decimal_places=6)
     timestamp = models.DateTimeField(default=datetime.now)
+    device_id = models.ForeignKey(GPSDevice, on_delete=models.CASCADE)
+
 
 class Movement(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
