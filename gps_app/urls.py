@@ -9,4 +9,5 @@ urlpatterns = [
     path('table/', views.table, name='table'),
     path('api/coordinates', views.gps_coordinates, name='gps_coordinates'),
     path('gps-data/', views.gps_data_list, name='gps_data_list'),
+    path('update_name/', views.update_device_name, name='update_device_name'),
 ]
