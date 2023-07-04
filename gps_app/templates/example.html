@@ -51,8 +51,13 @@
                     class="fas  fa-search"></i></button></div>
             </form> -->
             {% if notify %}
-              <div class="bg-alert" style="color: white; padding: 0.5rem; background-color: brown;">⚠️ Movimentação detectada! ⚠️</div>
+              <div class="bg-danger" style="color: white; padding: 0.5rem; border-radius: 8px;">⚠️ Movimentação
+              detectada! ⚠️</div>
             {% endif %}
+            {% if not inside %}
+              <div class="bg-danger" style="color: white; padding: 0.5rem; border-radius: 8px;">⚠️ Dispositivo fora do cercado! ⚠️</div>
+            {% endif %}
+
             <ul class="navbar-nav flex-nowrap ms-auto">
               <!-- <li class="nav-item dropdown d-sm-none no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false"
                   data-bs-toggle="dropdown" href="#"><i class="fas fa-search"></i></a>

@@ -13,7 +13,7 @@ def is_inside(gps_device):
     lat = gps_device.current_latitude
     lon = gps_device.current_longitude
 
-    cercado  = gps_device.cercado
+    cercado = gps_device.cercado
 
     # Check if the GPS device is inside the cercado polygon
     num_points = 4
@@ -335,10 +335,37 @@ def remove_cercado(request):
 
 
 def example(request):
-    gps_data = {'name': "The Example GPS", 'current_latitude': -28.949480733, 'current_longitude': -49.466650288, 'current_altitude': 15.4785, 'current_speed': 0.0}
+    CERCADO_UFSC = Cercado.objects.get(id=1)
+
+    # coordenadas dentro da UFSC
+    gps_data = {'name': "The Example GPS", 'current_latitude': -28.95149057705809, 'current_longitude': -49.467360307796156, 'current_altitude': 15.4785, 'current_speed': 0.0, 'cercado': CERCADO_UFSC}    
+
+    #   coordenadas fora da UFSC
+    # gps_data = {'name': "The Example GPS", 'current_latitude': -28.949480733, 'current_longitude': -49.466650288, 'current_altitude': 15.4785, 'current_speed': 0.0, 'cercado': CERCADO_UFSC}
 
     notify = False
+    inside = True
 
+    lat = gps_data['current_latitude']
+    lon = gps_data['current_longitude']
+
+    # Check if the GPS device is inside the cercado polygon
+    num_points = 4
+    inside = False
+
+    for i in range(num_points):
+        j = (i + 1) % num_points
+
+        # Extract the latitude and longitude coordinates of each vertex
+        lat_i, lon_i = float(getattr(CERCADO_UFSC, f'lat{i+1}')), float(getattr(CERCADO_UFSC, f'lon{i+1}'))
+        lat_j, lon_j = float(getattr(CERCADO_UFSC, f'lat{j+1}')), float(getattr(CERCADO_UFSC, f'lon{j+1}'))
+
+        if (
+            ((lat_i > lat) != (lat_j > lat)) and
+            (lon < (lon_j - lon_i) * (lat - lat_i) / (lat_j - lat_i) + lon_i)
+        ):
+            inside = not inside
+    
     distances_today = [0.0, 0.0, 4.5, 1.3, 5.2, 1.2, 3.3, 0.7]
 
     movements = 4
@@ -421,4 +448,4 @@ def example(request):
     chart_data_json = json.dumps(chart_data)
 
     return render(request, 'example.html', {'gps_data': 
-    gps_data, 'todays_distance': total_distance, 'months_distance': month_distance, 'total_movements': movements, 'distance_per_time': distances_today, 'chart_data': chart_data_json, 'notify': notify, 'avg_distance': avg_distance})
+    gps_data, 'todays_distance': total_distance, 'months_distance': month_distance, 'total_movements': movements, 'distance_per_time': distances_today, 'chart_data': chart_data_json, 'notify': notify, 'avg_distance': avg_distance, 'inside': inside})
