@@ -6,14 +6,25 @@ class User(models.Model):
     name = models.CharField(max_length=100)
     email = models.CharField(max_length=100)
 
+class Cercado(models.Model):
+    name = models.CharField(max_length=100, default='Nameless Cercado')
+    lat1 = models.DecimalField(max_digits=9, decimal_places=3)
+    lon1 = models.DecimalField(max_digits=9, decimal_places=3)
+    lat2 = models.DecimalField(max_digits=9, decimal_places=3)
+    lon2 = models.DecimalField(max_digits=9, decimal_places=3)
+    lat3 = models.DecimalField(max_digits=9, decimal_places=3)
+    lon3 = models.DecimalField(max_digits=9, decimal_places=3)
+    lat4 = models.DecimalField(max_digits=9, decimal_places=3)
+    lon4 = models.DecimalField(max_digits=9, decimal_places=3)
+
 class GPSDevice(models.Model):
-    name = models.CharField(max_length=100, default='BernardoLegal')
+    name = models.CharField(max_length=100, default='Nameless GPS')
     current_latitude = models.DecimalField(max_digits=9, decimal_places=6)
     current_longitude = models.DecimalField(max_digits=9, decimal_places=6)
     current_altitude = models.DecimalField(max_digits=9, decimal_places=3)
     current_speed = models.DecimalField(max_digits=9, decimal_places=3)
     last_updated = models.DateTimeField(default=datetime.now)
-    # user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    cercado = models.ForeignKey(Cercado, on_delete=models.SET_NULL, null=True)
 
 class PreviousLocation(models.Model):
     latitude = models.DecimalField(max_digits=9, decimal_places=6)

@@ -47,15 +47,11 @@
               type="button"><i class="fas fa-bars"></i></button>
             <!-- <form class="d-none d-sm-inline-block me-auto ms-md-3 my-2 my-md-0 mw-100 navbar-search">
               <div class="input-group"><input class="bg-light form-control border-0 small" type="text"
-                  value="Search for ..."><button class="btn btn-primary py-0" type="button"><i
+                  placeholder="Search for ..."><button class="btn btn-primary py-0" type="button"><i
                     class="fas  fa-search"></i></button></div>
             </form> -->
             {% if notify %}
-            <div class="bg-danger" style="color: white; padding: 0.5rem; border-radius: 8px;">⚠️ Movimentação
-              detectada! ⚠️</div>
-            {% endif %}
-            {% if not inside %}
-            <div class="bg-danger" style="color: white; padding: 0.5rem; border-radius: 8px;">⚠️ Dispositivo fora do cercado! ⚠️</div>
+              <div class="bg-alert" style="color: white; padding: 0.5rem; background-color: brown;">⚠️ Movimentação detectada! ⚠️</div>
             {% endif %}
             <ul class="navbar-nav flex-nowrap ms-auto">
               <!-- <li class="nav-item dropdown d-sm-none no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false"
@@ -63,7 +59,7 @@
                 <div class="dropdown-menu dropdown-menu-end p-3 animated--grow-in" aria-labelledby="searchDropdown">
                   <form class="me-auto navbar-search w-100">
                     <div class="input-group"><input class="bg-light form-control border-0 small" type="text"
-                        value="Search for ...">
+                        placeholder="Search for ...">
                       <div class="input-group-append"><button class="btn btn-primary py-0" type="button"><i
                             class="fas fa-search"></i></button></div>
                     </div>
@@ -164,12 +160,10 @@
           <div class="d-sm-flex justify-content-between align-items-center mb-4">
             <h3 class="text-dark mb-0">{{gps_data.name}}</h3>
             <div class="btns d-flex" style="gap:1rem;">
-              <button class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" data-bs-toggle="modal"
-                data-bs-target="#changeNameModal"><i class="fas fa-pen fa-sm text-white-50 me-1"></i> Alterar Nome do
-                Dispositivo</button>
-              <button class="btn btn-dark btn-sm d-none d-sm-inline-block" role="button" data-bs-toggle="modal"
-                data-bs-target="#cercadoModal"><i class="fas fa-wrench fa-sm text-white-50 me-1"></i> Configurar
-                Cercado</button>
+              <button class="btn btn-primary btn-sm d-none d-sm-inline-block"
+                role="button" data-bs-toggle="modal" data-bs-target="#changeNameModal"><i class="fas fa-pen fa-sm text-white-50 me-1"></i> Alterar Nome do Dispositivo</button>
+              <button class="btn btn-dark btn-sm d-none d-sm-inline-block"
+              role="button" data-bs-toggle="modal" data-bs-target="#cercadoModal"><i class="fas fa-wrench fa-sm text-white-50 me-1"></i> Configurar Cercado</button>
             </div>
           </div>
           <div class="modal fade" id="changeNameModal" tabindex="-1" role="dialog"
@@ -195,72 +189,60 @@
               </div>
             </div>
           </div>
-          <div class="modal fade" id="cercadoModal" tabindex="-1" role="dialog" aria-labelledby="cercadoModal"
-            aria-hidden="true">
+          <div class="modal fade" id="cercadoModal" tabindex="-1" role="dialog"
+            aria-labelledby="cercadoModal" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="changeNameModalLabel">Configure um novo Cercado Virtual</h5>
+                  <h5 class="modal-title" id="changeNameModalLabel">Configure um Cercado Virtual</h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                   </button>
                 </div>
                 <form id="changeNameForm" action="{% url 'config_cercado' %}" method="POST">
                   {% csrf_token %}
                   <div class="modal-body">
-                    <div class="name-input mb-4">
-                      <label for="newName">Nome do cercado:</label>
-                      <input type="text" name="name" id="newName" class="form-control" required>
-                    </div>
                     <div>Coordenadas do ponto 1:</div>
                     <div class="d-flex mb-4" style="gap:1.5rem;">
                       <div class="input">
                         <label for="lat1">Latitude:</label>
-                        <input type="text" name="lat1" id="lat1" class="form-control" value="-28.95289922091892"
-                          required>
+                        <input type="text" name="name" id="lat1" class="form-control" required>
                       </div>
                       <div class="input">
                         <label for="lon1">Longitude:</label>
-                        <input type="text" name="lon1" id="lon1" class="form-control" value="-49.47118507573491"
-                          required>
+                        <input type="text" name="name" id="lon1" class="form-control" required>
                       </div>
                     </div>
                     <div>Coordenadas do ponto 2:</div>
                     <div class="d-flex mb-4" style="gap:1.5rem;">
                       <div class="input">
                         <label for="lat2">Latitude:</label>
-                        <input type="text" name="lat2" id="lat2" class="form-control" value="-28.951676769201825"
-                          required>
+                        <input type="text" name="name" id="lat2" class="form-control" required>
                       </div>
                       <div class="input">
                         <label for="lon2">Longitude:</label>
-                        <input type="text" name="lon2" id="lon2" class="form-control" value="-49.46587234757044"
-                          required>
+                        <input type="text" name="name" id="lon2" class="form-control" required>
                       </div>
                     </div>
                     <div>Coordenadas do ponto 3:</div>
                     <div class="d-flex mb-4" style="gap:1.5rem;">
                       <div class="input">
                         <label for="lat3">Latitude:</label>
-                        <input type="text" name="lat3" id="lat3" class="form-control" value="-28.948887459151496"
-                          required>
+                        <input type="text" name="name" id="lat3" class="form-control" required>
                       </div>
                       <div class="input">
                         <label for="lon3">Longitude:</label>
-                        <input type="text" name="lon3" id="lon3" class="form-control" value="-49.46905998446912"
-                          required>
+                        <input type="text" name="name" id="lon3" class="form-control" required>
                       </div>
                     </div>
                     <div>Coordenadas do ponto 4:</div>
                     <div class="d-flex mb-4" style="gap:1.5rem;">
                       <div class="input">
                         <label for="lat4">Latitude:</label>
-                        <input type="text" name="lat4" id="lat4" class="form-control" value="-28.951642333733236"
-                          required>
+                        <input type="text" name="name" id="lat4" class="form-control" required>
                       </div>
                       <div class="input">
                         <label for="lat4">Longitude:</label>
-                        <input type="text" name="lon4" id="lon4" class="form-control" value="-49.47230665168074"
-                          required>
+                        <input type="text" name="name" id="lon4" class="form-control" required>
                       </div>
                     </div>
                   </div>
@@ -269,14 +251,6 @@
                     <button type="submit" class="btn btn-primary">Salvar</button>
                   </div>
                 </form>
-                {% if gps_data.cercado %}
-                <div class="pe-5 ps-5 pb-3 d-flex justify-content-center">
-                  <form method="POST" action="{% url 'remove_cercado' %}">
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-secondary">Deletar Cercado Atual</button>
-                  </form>
-                </div>
-                {% endif %}
               </div>
             </div>
           </div>
@@ -322,8 +296,7 @@
                       </div>
                       <div class="row g-0 align-items-center">
                         <div class="col-auto">
-                          <div class="text-dark fw-bold h5 mb-0 me-3"><span>{{ avg_distance|floatformat:2 }} km</span>
-                          </div>
+                          <div class="text-dark fw-bold h5 mb-0 me-3"><span>{{ avg_distance|floatformat:2 }} km</span></div>
                         </div>
                       </div>
                     </div>
