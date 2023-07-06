@@ -25,8 +25,8 @@ SECRET_KEY = ')cl_q+xvhkf1e@d#bo1u8-w777)u0pinfan$6i6&dmx=7ekg60'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# BERNARDOLEGAL, INTERNETBALA
-ALLOWED_HOSTS = ['192.168.3.50', '192.168.23.29', 'localhost', '127.0.0.1']
+# PARA TESTAR LOCALMENTE, COLOCAR O SEU IPv4 AQUI:
+ALLOWED_HOSTS = []
 
 # Application definition
 

@@ -341,7 +341,7 @@ def example(request):
     gps_data = {'name': "The Example GPS", 'current_latitude': -28.95149057705809, 'current_longitude': -49.467360307796156, 'current_altitude': 15.4785, 'current_speed': 0.0, 'cercado': CERCADO_UFSC}    
 
     #   coordenadas fora da UFSC
-    # gps_data = {'name': "The Example GPS", 'current_latitude': -28.949480733, 'current_longitude': -49.466650288, 'current_altitude': 15.4785, 'current_speed': 0.0, 'cercado': CERCADO_UFSC}
+    # gps_data = {'name': "The Example GPS", 'current_latitude': -28.949480733, 'current_longitude': -49.466650288, 'current_altitude': 15.4785, 'current_speed': 3.0, 'cercado': CERCADO_UFSC}
 
     notify = False
     inside = True
@@ -366,7 +366,7 @@ def example(request):
         ):
             inside = not inside
     
-    distances_today = [0.0, 0.0, 4.5, 1.3, 5.2, 1.2, 3.3, 0.7]
+    distances_today = [0.0, 0.0, 4.5, 1.3, 5.2, 1.2, 3.3, 0.0]
 
     movements = 4
 
